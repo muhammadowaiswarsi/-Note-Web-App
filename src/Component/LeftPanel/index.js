@@ -1,4 +1,5 @@
 import React from "react";
+import "./index.css";
 
 class LeftPanel extends React.Component {
   render() {
@@ -14,7 +15,14 @@ class LeftPanel extends React.Component {
           {getNotebyUser_id &&
             getNotebyUser_id.length &&
             getNotebyUser_id.map((item, index) => {
-              return <p>{item.noteTitle}</p>;
+              return (
+                <p
+                  className="noteTitle"
+                  onClick={() => this.props.selected_note(item)}
+                >
+                  {item.noteTitle}
+                </p>
+              );
             })}
         </div>
       </div>
