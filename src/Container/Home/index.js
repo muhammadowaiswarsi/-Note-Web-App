@@ -3,7 +3,7 @@ import Dashboard from "../../Component/Home";
 import { Col, Row } from "react-bootstrap";
 import "./index.css";
 import { connect } from "react-redux";
-import routeAction from "../../store/actions/routeAction";
+import RouteAction from "../../store/actions/RouteAction";
 import { logout } from "../../Service/AuthService";
 import LeftPanel from "./../LeftPanel";
 import CenterPanel from "./../CenterPanel";
@@ -67,7 +67,7 @@ class DashboardContainer extends React.Component {
 const mapDispatchToProp = dispatch => {
   return {
     authed: flag => {
-      dispatch(routeAction.authed(flag));
+      dispatch(RouteAction.authed(flag));
     }
   };
 };

@@ -2,7 +2,7 @@ import React from "react";
 import Signup from "../../Component/signup";
 import { Col } from "react-bootstrap";
 import { connect } from "react-redux";
-import { routeAction } from "./../../store/actions/index";
+import { RouteAction } from "./../../store/actions/index";
 import { signup } from "./../../Service/AuthService";
 import { Error } from "./../../Shared/Error";
 import "./index.css";
@@ -98,13 +98,13 @@ class SignupContainer extends React.Component {
 const dispatchToProp = dispatch => {
   return {
     confirmRoute: payload => {
-      dispatch(routeAction.confirm_route(payload));
+      dispatch(RouteAction.confirm_route(payload));
     },
     authed: flag => {
-      dispatch(routeAction.authed(flag));
+      dispatch(RouteAction.authed(flag));
     },
     user: obj => {
-      dispatch(routeAction.user(obj));
+      dispatch(RouteAction.user(obj));
     }
   };
 };

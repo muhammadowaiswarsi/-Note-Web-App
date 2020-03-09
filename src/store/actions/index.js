@@ -1,5 +1,4 @@
-import routeAction from './routeAction'
+import RouteAction from "./RouteAction";
+import NoteAction from "./NoteAction";
 
-export {
-    routeAction
-}
+export { RouteAction, NoteAction };

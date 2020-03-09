@@ -1,8 +1,10 @@
 import { combineReducers } from 'redux'
-import routeReducer from './routeReducer'
+import routeReducer from './RouteReducer'
+import NoteReducer from './NoteReducer'
 
 const rootReducer = combineReducers({
-    routeReducer
+    routeReducer,
+    NoteReducer
 })
 
 export default rootReducer

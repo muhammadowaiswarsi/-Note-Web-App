@@ -3,7 +3,7 @@ import SignupConfirm from "../../Component/signupConfirm";
 import { Col } from "react-bootstrap";
 import { confirm } from "./../../Service/AuthService";
 import { connect } from "react-redux";
-import { routeAction } from "./../../store/actions"
+import { RouteAction } from "./../../store/actions"
 
 class SignupConfirmation extends React.Component {
   constructor(props) {
@@ -69,13 +69,13 @@ const mapStateToProp = state => {
 const mapDispatchToProp = dispatch => {
   return {
     Studentauthed: flag => {
-      dispatch(routeAction.Studentauthed(flag));
+      dispatch(RouteAction.Studentauthed(flag));
     },
     Companyauthed: flag => {
-      dispatch(routeAction.Companyauthed(flag));
+      dispatch(RouteAction.Companyauthed(flag));
     },
     Adminauthed: flag => {
-      dispatch(routeAction.Adminauthed(flag));
+      dispatch(RouteAction.Adminauthed(flag));
     }
   };
 };

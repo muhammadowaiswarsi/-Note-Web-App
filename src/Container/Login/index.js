@@ -4,7 +4,7 @@ import { Col } from "react-bootstrap";
 import "./index.css";
 import { login } from "./../../Service/AuthService";
 import { connect } from "react-redux";
-import routeAction from "./../../store/actions/routeAction";
+import RouteAction from "../../store/actions/RouteAction";
 import { Error } from "./../../Shared/Error";
 import { isLoggedIn } from "./../../Service/AuthService"
 
@@ -96,10 +96,10 @@ class LoginContainer extends React.Component {
 const mapDispatchToProp = dispatch => {
   return {
     authed: flag => {
-      dispatch(routeAction.authed(flag));
+      dispatch(RouteAction.authed(flag));
     },
     user: payload => {
-      dispatch(routeAction.user(payload));
+      dispatch(RouteAction.user(payload));
     }
   };
 };

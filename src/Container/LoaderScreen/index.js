@@ -1,6 +1,6 @@
 import React from "react";
 import { isLoggedIn } from "./../../Service/AuthService";
-import routeAction from "./../../store/actions/routeAction";
+import RouteAction from "../../store/actions/RouteAction";
 import { connect } from "react-redux";
 import ReactLoading from "react-loading";
 
@@ -55,10 +55,10 @@ class Loading extends React.Component {
 const dispatchToProp = dispatch => {
   return {
     authed: flag => {
-      dispatch(routeAction.authed(flag));
+      dispatch(RouteAction.authed(flag));
     },
     user: obj => {
-      dispatch(routeAction.user(obj));
+      dispatch(RouteAction.user(obj));
     }
   };
 };

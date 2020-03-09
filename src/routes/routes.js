@@ -5,7 +5,7 @@ import DashboardContainer from '../Container/Home';
 import SignupConfirmation from '../Container/SignupConfirmation';
 import SignupContainer from '../Container/Signup';
 import { connect } from "react-redux";
-import routeAction from "./../store/actions/routeAction";
+import RouteAction from "../store/actions/RouteAction";
 import Loading from "./../Container/LoaderScreen";
 
 function PrivateRoute({ component: Component, authed, ...rest }) {
@@ -59,7 +59,7 @@ class Routes extends Component {
 
 const mapDispatchToProp = dispatch => {
     return {
-        user: (payload) => { dispatch(routeAction.user(payload)) }
+        user: (payload) => { dispatch(RouteAction.user(payload)) }
     }
 }
 

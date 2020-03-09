@@ -4,7 +4,7 @@ import {
     USER,
 } from '../constant'
 
-export default class routeAction {
+export default class RouteAction {
 
     static authed(flag) {
         return {
