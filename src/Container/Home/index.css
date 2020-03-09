@@ -1,0 +1,30 @@
+.MainContainer {
+  height: 100%;
+}
+
+.MainContainer .leftPanelCol {
+  height: 500px;
+  border-right: 2px solid #000;
+}
+
+.MainContainer .CenterPanelCol {
+  height: 500px;
+  border-right: 2px solid #000;
+}
+
+.MainContainer .RightPanelCol {
+  height: 500px;
+}
+
+.MainContainer .MainRow {
+  border: 2px solid #000;
+}
+
+.row {
+  margin: 0;
+}
+
+.MainContainer .NavRow {
+  border: 2px solid #000;
+  margin-bottom: 30px;
+}

@@ -1,0 +1,14 @@
+.NavMainDiv .welcome_head {
+  margin-left: 20px;
+  margin-top: 10px;
+}
+
+.NavMainDiv .logount_btn {
+  height: 40px;
+  margin-right: 30px;
+  margin-top: 10px;
+}
+
+.NavMainDiv {
+  width: 100%;
+}
