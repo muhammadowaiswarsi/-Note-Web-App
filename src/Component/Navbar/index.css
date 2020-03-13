@@ -1,12 +1,15 @@
+.NavMainDiv {
+  height: 80px;
+  align-items: center;
+}
+
 .NavMainDiv .welcome_head {
-  margin-left: 20px;
-  margin-top: 10px;
+  margin-left: 30px;
 }
 
 .NavMainDiv .logount_btn {
   height: 40px;
   margin-right: 30px;
-  margin-top: 10px;
 }
 
 .NavMainDiv {

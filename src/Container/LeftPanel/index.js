@@ -7,8 +7,9 @@ import { connect } from "react-redux";
 
 class LeftPanel extends React.Component {
   render() {
+    const { user } = this.props;
     return (
-      <Query query={getNotebyUser_id} variables={{ user_id: "3r23rwerwer" }}>
+      <Query query={getNotebyUser_id} variables={{ user_id: user.sub }}>
         {({ data, error }) => {
           return (
             <LeftPanelComponent
@@ -31,9 +32,10 @@ const mapDispatchToProp = dispatch => {
 };
 
 // const mapStateToProp = state => {
-//   let { NoteReducer } = state;
+//   let { RouteReducer } = state;
+//   console.log(RouteReducer);
 //   return {
-//     selected_note: NoteReducer.selected_note
+//     user: RouteReducer.user
 //   };
 // };
 

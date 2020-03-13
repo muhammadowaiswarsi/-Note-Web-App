@@ -1,21 +1,13 @@
 import React from "react";
 
-class CenterPanel extends React.Component {
-  render() {
-    const { selected_note } = this.props;
-    return !(selected_note && selected_note.note) ? (
+export const CenterPanelComponent = ({ selected_note }) => {
+  console.log(selected_note, "asdfadsf")
+  return (
+    <div>
       <div className="flex-center">
-        <h2>Select Any Note</h2>
+        <input value={selected_note.noteTitle} />
       </div>
-    ) : (
-      <div>
-        <div className="flex-center">
-          <h2>{selected_note.noteTitle}</h2>
-        </div>
-        <p>{selected_note.note}</p>
-      </div>
-    );
-  }
-}
-
-export default CenterPanel;
+      <textarea value={selected_note.note} />
+    </div>
+  );
+};

@@ -1,6 +1,6 @@
 import React from "react";
 import { connect } from "react-redux";
-import CenterPanelComponent from "./../../Component/CenterPanel";
+import { CenterPanelComponent } from "./../../Component/CenterPanel";
 
 class CenterPanel extends React.Component {
   render() {

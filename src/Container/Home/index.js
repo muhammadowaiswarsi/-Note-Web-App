@@ -42,6 +42,7 @@ class DashboardContainer extends React.Component {
 
   render() {
     let { loader } = this.state;
+    const {user} = this.props
     return (
       <div className="MainContainer">
         <Row className="NavRow">
@@ -49,7 +50,7 @@ class DashboardContainer extends React.Component {
         </Row>
         <Row className="MainRow">
           <Col className="leftPanelCol" xl={2} md={2} sm={12}>
-            <LeftPanel />
+            <LeftPanel user={user} />
           </Col>
           <Col className="CenterPanelCol" xl={7} md={7} sm={12}>
             <CenterPanel />

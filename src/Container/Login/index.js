@@ -6,32 +6,33 @@ import { login } from "./../../Service/AuthService";
 import { connect } from "react-redux";
 import RouteAction from "../../store/actions/RouteAction";
 import { Error } from "./../../Shared/Error";
-import { isLoggedIn } from "./../../Service/AuthService"
-
+import { isLoggedIn } from "./../../Service/AuthService";
 
 class LoginContainer extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
       loader: false,
-      error: "",
+      error: ""
     };
   }
 
   componentDidMount() {
+    console.log("login container");
     isLoggedIn()
-      .then((res) => {
+      .then(res => {
         if (res.attributes.sub) {
-          localStorage.setItem("user", JSON.stringify(res.attributes))
-          this.props.authed(true)
+          const user = res.attributes;
+          this.props.user(user);
+          this.props.authed(true);
           setTimeout(() => {
-            this.props.history.replace(`/dashboard`)
+            this.props.history.replace(`/dashboard`);
           }, 100);
         }
       })
-      .catch((err) => {
-        console.log(err)
-      })
+      .catch(err => {
+        console.log(err);
+      });
   }
 
   loginFunc = obj => {
@@ -42,7 +43,7 @@ class LoginContainer extends React.Component {
     login(email, password)
       .then(res => {
         let user = res.attributes;
-        localStorage.setItem("user", JSON.stringify(res.attributes))
+        localStorage.setItem("user", JSON.stringify(res.attributes));
         let obj = {
           email: user.email,
           user_id: user.sub
@@ -51,7 +52,7 @@ class LoginContainer extends React.Component {
         this.setState({
           loader: false
         });
-        this.props.authed(true)
+        this.props.authed(true);
         setTimeout(() => {
           this.props.history.replace("/dashboard");
         }, 100);
@@ -85,7 +86,6 @@ class LoginContainer extends React.Component {
             loader={loader}
             history={this.props.history}
           />
-
         </Col>
         <Col sm={1} md={3} lg={3} xl={4} />
       </div>
@@ -104,7 +104,4 @@ const mapDispatchToProp = dispatch => {
   };
 };
 
-export default connect(
-  null,
-  mapDispatchToProp
-)(LoginContainer);
+export default connect(null, mapDispatchToProp)(LoginContainer);

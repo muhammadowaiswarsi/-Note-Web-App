@@ -1,13 +1,13 @@
 import React from "react";
 import { Button } from "react-bootstrap";
-// import Button from "./../../Shared/Button";
 import "./index.css";
 
 class Navbar extends React.Component {
   render() {
+    const { name } = this.props;
     return (
       <div className="flex-between NavMainDiv MB10">
-        <span className="welcome_head MB30">Welcome Owais</span>
+        <h4 className="welcome_head">Welcome {name}</h4>
         <Button
           className="logount_btn"
           variant="outline-secondary"

@@ -6,15 +6,16 @@ import ReactLoading from "react-loading";
 
 class Loading extends React.Component {
   componentDidMount() {
+    console.log("loader screen");
     isLoggedIn()
       .then(res => {
         if (res.attributes.sub) {
-          localStorage.setItem("user", JSON.stringify(res.attributes))
+          localStorage.setItem("user", JSON.stringify(res.attributes));
           let user = res.attributes;
           let obj = {
             user_id: user.sub,
             name: user.name
-          }
+          };
           this.props.user(obj);
           setTimeout(() => {
             this.props.authed(false);
@@ -63,7 +64,4 @@ const dispatchToProp = dispatch => {
   };
 };
 
-export default connect(
-  null,
-  dispatchToProp
-)(Loading);
+export default connect(null, dispatchToProp)(Loading);

@@ -3,6 +3,7 @@ import Signup from "../../Component/signup";
 import { Col } from "react-bootstrap";
 import { connect } from "react-redux";
 import { RouteAction } from "./../../store/actions/index";
+import { isLoggedIn } from "./../../Service/AuthService";
 import { signup } from "./../../Service/AuthService";
 import { Error } from "./../../Shared/Error";
 import "./index.css";
@@ -78,6 +79,30 @@ class SignupContainer extends React.Component {
       });
     }
   };
+
+  componentDidMount() {
+    isLoggedIn()
+      .then(res => {
+        if (res.attributes.sub) {
+          localStorage.setItem("user", JSON.stringify(res.attributes));
+          let user = res.attributes;
+          let obj = {
+            user_id: user.sub,
+            name: user.name
+          };
+          this.props.user(obj);
+          setTimeout(() => {
+            this.props.authed(false);
+          }, 100);
+          this.props.history.replace(`/dashboard`);
+        }
+      })
+      .catch(err => {
+        this.props.authed(false);
+        this.props.history.replace("/login");
+        console.log(err);
+      });
+  }
 
   render() {
     return (
