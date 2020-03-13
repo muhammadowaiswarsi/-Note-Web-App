@@ -1,33 +1,31 @@
 import React from "react";
 import "./index.css";
 
-class LeftPanel extends React.Component {
-  render() {
-    const {
-      data: { getNotebyUser_id }
-    } = this.props;
-    return (
-      <div>
-        <div className="flex-center">
-          <h2>New Note</h2>
-        </div>
-        <div>
-          {getNotebyUser_id &&
-            getNotebyUser_id.length &&
-            getNotebyUser_id.map((item, index) => {
-              return (
-                <p
-                  className="noteTitle"
-                  onClick={() => this.props.selected_note(item)}
-                >
-                  {item.noteTitle}
-                </p>
-              );
-            })}
-        </div>
+export const LeftPanelComponent = ({ data }) => {
+  return (
+    <div>
+      <div className="flex-center note-head">
+        <h2>New Note</h2>
       </div>
-    );
-  }
+      <div>
+        {data?.getNotebyUser_id &&
+          data.getNotebyUser_id.length &&
+          data.getNotebyUser_id.map((item, index) => {
+            return (
+              <p
+                className="noteTitle"
+                onClick={() => this.props.selected_note(item)}
+              >
+                {item.noteTitle}
+              </p>
+            );
+          })}
+      </div>
+    </div>
+  );
 }
 
-export default LeftPanel;
+
+
+
+

@@ -3,7 +3,7 @@ import Dashboard from "../../Component/Home";
 import { Col, Row } from "react-bootstrap";
 import "./index.css";
 import { connect } from "react-redux";
-import RouteAction from "../../store/actions/RouteAction";
+import RouteAction from "../../store/actions/routeAction";
 import { logout } from "../../Service/AuthService";
 import LeftPanel from "./../LeftPanel";
 import CenterPanel from "./../CenterPanel";

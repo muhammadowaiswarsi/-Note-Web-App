@@ -81,27 +81,27 @@ class SignupContainer extends React.Component {
   };
 
   componentDidMount() {
-    isLoggedIn()
-      .then(res => {
-        if (res.attributes.sub) {
-          localStorage.setItem("user", JSON.stringify(res.attributes));
-          let user = res.attributes;
-          let obj = {
-            user_id: user.sub,
-            name: user.name
-          };
-          this.props.user(obj);
-          setTimeout(() => {
-            this.props.authed(false);
-          }, 100);
-          this.props.history.replace(`/dashboard`);
-        }
-      })
-      .catch(err => {
-        this.props.authed(false);
-        this.props.history.replace("/login");
-        console.log(err);
-      });
+    // isLoggedIn()
+    //   .then(res => {
+    //     if (res.attributes.sub) {
+    //       localStorage.setItem("user", JSON.stringify(res.attributes));
+    //       let user = res.attributes;
+    //       let obj = {
+    //         user_id: user.sub,
+    //         name: user.name
+    //       };
+    //       this.props.user(obj);
+    //       setTimeout(() => {
+    //         this.props.authed(false);
+    //       }, 100);
+    //       this.props.history.replace(`/dashboard`);
+    //     }
+    //   })
+    //   .catch(err => {
+    //     this.props.authed(false);
+    //     this.props.history.replace("/login");
+    //     console.log(err);
+    //   });
   }
 
   render() {

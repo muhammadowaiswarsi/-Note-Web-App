@@ -4,7 +4,7 @@ import { Col } from "react-bootstrap";
 import "./index.css";
 import { login } from "./../../Service/AuthService";
 import { connect } from "react-redux";
-import RouteAction from "../../store/actions/RouteAction";
+import RouteAction from "../../store/actions/routeAction";
 import { Error } from "./../../Shared/Error";
 import { isLoggedIn } from "./../../Service/AuthService";
 

@@ -1,0 +1,34 @@
+.header-center {
+  height: 65px;
+  display: flex;
+  align-items: center;
+}
+.header-center Col{
+    height: 100%;
+}
+
+.header-center .input-title {
+  width: 80%;
+}
+.header-center .input-title > input {
+  width: 100%;
+}
+
+.icon-div {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+}
+.icon-1 {
+  margin-right: 10px;
+}
+.header-center .icon-span {
+  width: 50px;
+  height: 50px;
+  border: 2px solid;
+  border-radius: 100%;
+  display: flex;
+  align-items: center;
+  align-items: center;
+  justify-content: center;
+}

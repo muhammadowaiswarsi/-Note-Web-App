@@ -1,5 +1,5 @@
 import React from "react";
-import LeftPanelComponent from "./../../Component/LeftPanel";
+import { LeftPanelComponent } from "./../../Component/LeftPanel";
 import { Query } from "react-apollo";
 import { getNotebyUser_id } from "./../../Config/Queries";
 import { NoteAction } from "./../../store/actions";
