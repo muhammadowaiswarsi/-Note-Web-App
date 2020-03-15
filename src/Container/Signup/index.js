@@ -3,7 +3,7 @@ import Signup from "../../Component/signup";
 import { Col } from "react-bootstrap";
 import { connect } from "react-redux";
 import { RouteAction } from "./../../store/actions/index";
-import { isLoggedIn } from "./../../Service/AuthService";
+// import { isLoggedIn } from "./../../Service/AuthService";
 import { signup } from "./../../Service/AuthService";
 import { Error } from "./../../Shared/Error";
 import "./index.css";

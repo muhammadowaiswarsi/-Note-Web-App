@@ -14,7 +14,6 @@ export const CreateNoteModal = ({ handleClose, modalopen, content, CreateNote, t
                         <Form.Group controlId="title">
                             <Form.Label>Note Title</Form.Label>
                             <Form.Control type="text"
-                                // controlId="title"
                                 placeholder="Note title..."
                                 value={title}
                                 onChange={setvalueonChange} />
@@ -23,7 +22,6 @@ export const CreateNoteModal = ({ handleClose, modalopen, content, CreateNote, t
                         <Form.Group controlId="content">
                             <Form.Label>Content</Form.Label>
                             <Form.Control as="textarea"
-                                // controlId="content"
                                 rows="3"
                                 value={content}
                                 placeholder="content..."

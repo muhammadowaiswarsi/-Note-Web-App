@@ -1,5 +1,4 @@
 import React from "react";
-import Dashboard from "../../Component/Home";
 import { Col, Row, Image } from "react-bootstrap";
 import "./index.css";
 import { connect } from "react-redux";

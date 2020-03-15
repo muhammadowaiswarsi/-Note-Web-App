@@ -7,7 +7,6 @@ import { NoteAction } from "./../../store/actions";
 import { connect } from "react-redux";
 import { CreateNoteModal } from './../../Component/createNoteModal';
 import { AppSync } from './../../Config/graphql-config';
-import { v4 as uuidv4 } from 'uuid';
 class LeftPanel extends React.Component {
   constructor() {
     super()

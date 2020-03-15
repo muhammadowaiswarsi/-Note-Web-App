@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Col, Button } from "react-bootstrap";
+import { Col } from "react-bootstrap";
 
 import "./index.css";
 
@@ -29,7 +29,6 @@ class Dashboard extends Component {
   }
 
   render() {
-    let { loader, items } = this.props;
     // let name = JSON.parse(localStorage.getItem("user"));
     // name = name && name.name;
     return (
