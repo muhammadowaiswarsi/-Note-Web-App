@@ -3,17 +3,23 @@
   display: flex;
   align-items: center;
 }
-.header-center Col{
-    height: 100%;
+.header-center col {
+  height: 100%;
 }
 
 .header-center .input-title {
   width: 80%;
+  height: 100%;
 }
 .header-center .input-title > input {
   width: 100%;
+  border: none;
+  font-size: 30px;
 }
-
+.header-center .input-title > input:focus {
+  border: none;
+  outline: none;
+}
 .icon-div {
   display: flex;
   align-items: center;
@@ -31,4 +37,14 @@
   align-items: center;
   align-items: center;
   justify-content: center;
+}
+
+.content-Row {
+  min-height: 200px;
+  height: 400px;
+}
+
+.content-Row > textarea {
+  height: 100%;
+  width: 100%;
 }

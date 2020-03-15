@@ -1,8 +1,8 @@
 import gql from "graphql-tag";
 
 const addNote = gql`
-    addNote($AddNote: AddNote){
-        addNote(AddNote: $AddNote )
+mutation addNote($AddNote: AddNote){
+         addNote(AddNote: $AddNote){
             id
 	        note
 	        noteTitle
@@ -12,8 +12,8 @@ const addNote = gql`
 }`;
 
 const delteNote = gql`
-    addNote($id: ID!, $createdTimeStamp: String!){
-        addNote(id: $id, createdTimeStamp: $createdTimeStamp)
+mutation addNote($id: ID!, $createdTimeStamp: String!){
+         addNote(id: $id, createdTimeStamp: $createdTimeStamp){
             id
 	        note
 	        noteTitle
@@ -23,7 +23,7 @@ const delteNote = gql`
 }`;
 
 const updateNote = gql`
-    updateNote($UpdateNote: UpdateNote){
+mutation updateNote($UpdateNote: UpdateNote){
         updateNote(UpdateNote: $UpdateNote){
             id
             note

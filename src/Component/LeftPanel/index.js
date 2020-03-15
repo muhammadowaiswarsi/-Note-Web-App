@@ -1,10 +1,10 @@
 import React from "react";
 import "./index.css";
 
-export const LeftPanelComponent = ({ data }) => {
+export const LeftPanelComponent = ({ data, openModalFunction }) => {
   return (
     <div>
-      <div className="flex-center note-head">
+      <div className="flex-center note-head" onClick={openModalFunction}>
         <h2>New Note</h2>
       </div>
       <div>

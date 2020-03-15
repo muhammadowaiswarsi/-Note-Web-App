@@ -8,7 +8,7 @@ export const CenterPanelComponent = ({ selected_note }) => {
       <Row className="header-center">
         <Col xl={8} md={8} sm={8} style={{ height: "100%", display: "flex", alignItems: "center" }}>
           <div className="flex-center input-title">
-            <input value={selected_note.noteTitle} />
+            <input value={selected_note.noteTitle} placeholder="Type Note Title..." />
           </div>
         </Col>
         <Col xl={4} md={4} sm={4}>
@@ -23,7 +23,12 @@ export const CenterPanelComponent = ({ selected_note }) => {
 
         </Col>
       </Row>
-      <textarea value={selected_note.note} />
+      <Row>
+        <Col xl={12} md={12} sm={12} className="content-Row">
+          <textarea value={selected_note.note} />
+        </Col>
+      </Row>
+
     </div>
   );
 };
