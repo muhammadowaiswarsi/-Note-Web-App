@@ -10,8 +10,16 @@
 .MainContainer .CenterPanelCol {
   height: 500px;
   border-right: 2px solid #000;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
-
+.MainContainer .CenterPanelCol > img {
+  display: none;
+}
+.MainContainer .CenterPanelCol .rightpanelMenu {
+  display: none;
+}
 .MainContainer .RightPanelCol {
   height: 500px;
 }
@@ -27,4 +35,52 @@
 .MainContainer .NavRow {
   border: 2px solid #000;
   margin-bottom: 30px;
+}
+
+@media (max-width: 768px) {
+  .MainRow {
+    position: relative;
+  }
+  .MainRow .leftPanelCol {
+    height: 100%;
+    width: 0;
+    z-index: 1;
+    top: 0;
+    left: 0;
+    overflow-x: hidden;
+    position: absolute;
+    transition: 0.5s;
+    background-color: #f3f1f1;
+  }
+  .MainRow .RightPanelCol {
+    height: 100%;
+    width: 0;
+    z-index: 1;
+    top: 0;
+    right:0;
+    overflow-x: hidden;
+    position: absolute;
+    transition: 0.5s;
+    background-color: #f3f1f1;
+  }
+  .MainRow .collapsepanel {
+    width: 250px;
+  }
+  .MainRow .collapsepanel-off {
+    padding: 0;
+  }
+  /* .MainRow .RightPanelCol {
+    display: none;
+  } */
+  .MainContainer .CenterPanelCol > img {
+    display: inline;
+    align-self: flex-start;
+    padding-top: 10px;
+  }
+  .MainContainer .CenterPanelCol .rightpanelMenu {
+    display: inline;
+    align-self: flex-start;
+    padding-top: 10px;
+  }
+  
 }

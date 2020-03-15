@@ -1,34 +1,33 @@
 import React from "react";
 import { Col, Row, Image } from "react-bootstrap";
 import './index.css'
-export const CenterPanelComponent = ({ selected_note }) => {
-  console.log(selected_note, "asdfadsf")
+export const CenterPanelComponent = ({ selected_note, note, noteTitle, setvalueonChange, updateNote, deleteNote }) => {
   return (
-    <div>
-      <Row className="header-center">
-        <Col xl={8} md={8} sm={8} style={{ height: "100%", display: "flex", alignItems: "center" }}>
+    <div style={{ width: "100%" }}>
+      < Row className="header-center" >
+        <Col xl={8} md={8} sm={8} xs={8} style={{ height: "100%", display: "flex", alignItems: "center" }}>
           <div className="flex-center input-title">
-            <input value={selected_note.noteTitle} placeholder="Type Note Title..." />
+            <input disabled={selected_note?.id ? false : true} id="noteTitle" onChange={setvalueonChange} value={noteTitle} placeholder="Type Note Title..." />
           </div>
         </Col>
-        <Col xl={4} md={4} sm={4}>
+        <Col xl={4} md={4} sm={4} xs={4}>
           <div className="icon-div">
-            <span className="icon-span icon-1">
+            <span className="icon-span icon-1" onClick={() => updateNote(selected_note.id)}>
               <Image src={require('./../../assets/icons/saveimage.png')} style={{ width: "25px" }} />
             </span>
-            <span className="icon-span">
+            <span className="icon-span" onClick={() => deleteNote(selected_note.id)}>
               <Image src={require('./../../assets/icons/dustbin.png')} style={{ width: "25px" }} />
             </span>
           </div>
 
         </Col>
-      </Row>
+      </Row >
       <Row>
         <Col xl={12} md={12} sm={12} className="content-Row">
-          <textarea value={selected_note.note} />
+          <textarea id="note" value={note} onChange={setvalueonChange} />
         </Col>
       </Row>
 
-    </div>
+    </div >
   );
 };

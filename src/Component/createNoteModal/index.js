@@ -37,7 +37,7 @@ export const CreateNoteModal = ({ handleClose, modalopen, content, CreateNote, t
                     <Button variant="secondary" onClick={handleClose}>
                         Close
           </Button>
-                    <Button  onClick={CreateNote}>
+                    <Button variant="primary" onClick={CreateNote}>
                         Submit
           </Button>
                 </Modal.Footer>

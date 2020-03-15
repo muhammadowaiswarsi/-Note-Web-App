@@ -1,6 +1,6 @@
 import React from "react";
 import Dashboard from "../../Component/Home";
-import { Col, Row } from "react-bootstrap";
+import { Col, Row, Image } from "react-bootstrap";
 import "./index.css";
 import { connect } from "react-redux";
 import RouteAction from "../../store/actions/routeAction";
@@ -16,7 +16,9 @@ class DashboardContainer extends React.Component {
 
     this.state = {
       loader: false,
-      storeData: []
+      storeData: [],
+      toogle: false,
+      rightpaneltoogle: false
     };
   }
 
@@ -41,25 +43,32 @@ class DashboardContainer extends React.Component {
   };
 
   render() {
-    let { loader } = this.state;
-    const {user} = this.props
+    let { toogle, rightpaneltoogle } = this.state;
+    const { user } = this.props
     return (
       <div className="MainContainer">
         <Row className="NavRow">
           <Navbar />
         </Row>
         <Row className="MainRow">
-          <Col className="leftPanelCol" xl={2} md={2} sm={12}>
-            <LeftPanel user={user} />
+          <Col className={`leftPanelCol ${toogle ? 'collapsepanel' : "collapsepanel-off"} `} xl={2} md={2}>
+
+            <LeftPanel user={user} toogle={toogle} onClose={() => this.setState({ toogle: false })} />
           </Col>
           <Col className="CenterPanelCol" xl={7} md={7} sm={12}>
+            <Image src={require('./../../assets/icons/menu.png')} onClick={() => this.setState({ toogle: true, rightpaneltoogle: false })} />
             <CenterPanel />
+            <Image className="rightpanelMenu" src={require('./../../assets/icons/menu.png')} onClick={() => this.setState({ rightpaneltoogle: true, toogle: false })} />
+
           </Col>
-          <Col className="RightPanelCol" xl={3} md={3} sm={12}>
-            <RightPanel />
+          <Col className={`RightPanelCol ${rightpaneltoogle ? 'collapsepanel' : "collapsepanel-off"} `} xl={3} md={3} >
+
+            <RightPanel rightpaneltoogle={rightpaneltoogle} onClose={() => this.setState({ rightpaneltoogle: false })} />
+
           </Col>
-        </Row>
-        {/* <Dashboard logout={this.logout} loader={loader} /> */}
+
+          {/* <Dashboard logout={this.logout} loader={loader} /> */}
+        </Row> 
       </div>
     );
   }

@@ -1,37 +1,35 @@
 import gql from "graphql-tag";
 
 const addNote = gql`
-mutation addNote($AddNote: AddNote){
-         addNote(AddNote: $AddNote){
-            id
-	        note
-	        noteTitle
-	        user_id
-	        createdTimeStamp
-    }
-}`;
-
-const delteNote = gql`
-mutation addNote($id: ID!, $createdTimeStamp: String!){
-         addNote(id: $id, createdTimeStamp: $createdTimeStamp){
-            id
-	        note
-	        noteTitle
-	        user_id
-	        createdTimeStamp
-    }
-}`;
-
-const updateNote = gql`
-mutation updateNote($UpdateNote: UpdateNote){
-        updateNote(UpdateNote: $UpdateNote){
+mutation addNote($input: AddNote){
+         addNote(input: $input){
             id
             note
             noteTitle
             user_id
             createdTimeStamp
+    }   
+}`;
+
+const deleteNote = gql`
+mutation deleteNote($id: ID!, $createdTimeStamp: String!){
+         deleteNote(id: $id, createdTimeStamp: $createdTimeStamp){
+            id
+	        note
+	        noteTitle
+	        
+    }
+}`;
+
+const updateNote = gql`
+mutation updateNote($input: UpdateNote){
+        updateNote(input: $input){
+            id
+            note
+            noteTitle
+            createdTimeStamp
         }
     }
 `;
 
-export { addNote, delteNote, updateNote };
+export { addNote, deleteNote, updateNote };

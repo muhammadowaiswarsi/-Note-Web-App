@@ -31,22 +31,30 @@ class LeftPanel extends React.Component {
     AppSync.mutate({
       variables: {
         input: {
-          id: uuidv4(),
           note: content,
           noteTitle: title,
           user_id: user.sub,
-          createdTimeStamp: new Date().getTime()
+          createdTimeStamp: new Date().getTime().toString()
         }
       },
-      mutation: addNote
+      mutation: addNote,
+      refetchQueries: [{
+        query: getNotebyUser_id,
+        variables: { user_id: user.sub }
+      }]
     })
-      .then(Response => console.log(Response))
+      .then(Response => {
+        this.setState({
+          content: "",
+          title: "",
+          modalopen: false
+        })
+      })
       .catch(err => console.log(err))
   }
   render() {
-    const { user } = this.props;
-    const { modalopen, content, title } = this.state;
-    console.log(content, title)
+    const { user, toogle, onClose } = this.props;
+    const { modalopen } = this.state;
     return (
       <div>
         <CreateNoteModal
@@ -55,13 +63,15 @@ class LeftPanel extends React.Component {
           setvalueonChange={this.setvalueonChange}
           CreateNote={this.CreateNote}
         />
-        <Query query={getNotebyUser_id} variables={{ user_id: user.sub }}>
+        <Query query={getNotebyUser_id} variables={{ user_id: user.sub }} fetchPolicy="network-only">
           {({ data, error }) => {
             return (
               <LeftPanelComponent
                 data={data}
                 selected_note={this.props.selected_note}
                 openModalFunction={() => this.setState({ modalopen: true })}
+                toogle={toogle}
+                onClose={onClose}
               />
             );
           }}
