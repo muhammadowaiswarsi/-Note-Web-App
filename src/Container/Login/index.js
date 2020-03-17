@@ -21,6 +21,7 @@ class LoginContainer extends React.Component {
     console.log("login container");
     isLoggedIn()
       .then(res => {
+        console.log('res.attributes.sub',res.attributes.sub)
         if (res.attributes.sub) {
           const user = res.attributes;
           this.props.user(user);

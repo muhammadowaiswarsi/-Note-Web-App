@@ -2,10 +2,9 @@ import React from 'react';
 import { Modal, Button, Form } from 'react-bootstrap';
 
 export const CreateNoteModal = ({ handleClose, modalopen, content, CreateNote, title, setvalueonChange }) => {
-    console.log(modalopen, 'Modal')
     return (
         <div>
-            <Modal show={modalopen} onHide={handleClose} >
+            <Modal size="lg" show={modalopen} onHide={handleClose} >
                 <Modal.Header closeButton>
                     <Modal.Title>Create Note</Modal.Title>
                 </Modal.Header>

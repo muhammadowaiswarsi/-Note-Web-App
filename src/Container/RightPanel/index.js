@@ -10,25 +10,37 @@ class RightPanel extends React.Component {
     this.state = {
       ApiResponse: {},
       endPoint: "",
+
     }
+
   }
+
   // https://jsonplaceholder.typicode.com/todos
   sendRequest = () => {
     const { endPoint } = this.state;
-    fetch(endPoint,
-      {
-        mode: 'cors'
+    const { title, content } = this.props
+
+
+    const options = {
+      method: 'POST',
+      body: JSON.stringify({ noteTitle: title, note: content }),
+      headers: {
+        'Content-Type': 'application/json'
       }
-    )
-      .then((response) => {
-        return response.json();
-      })
-      .then((data) => {
+    }
+
+    // send POST request
+    fetch(endPoint, options)
+      .then(res => res.json())
+      .then(res => {
         this.setState({
-          ApiResponse: data
+          ApiResponse: res
         })
-      });
+        console.log(res)
+      })
+      .catch((err) => console.log('err', err))
   }
+  
   setvalueonChange = (event) => {
     this.setState({
       endPoint: event.target.value
@@ -44,6 +56,7 @@ class RightPanel extends React.Component {
       endPoint={endPoint}
       rightpaneltoogle={rightpaneltoogle}
       onClose={onClose}
+
     />;
   }
 }

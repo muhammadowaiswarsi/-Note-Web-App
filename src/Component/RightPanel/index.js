@@ -1,5 +1,5 @@
 import React from "react";
-import { Form } from 'react-bootstrap';
+import { Form, Button } from 'react-bootstrap';
 import './index.css';
 
 export const RightPanelComponent = ({ sendRequest, ApiResponse, endPoint, setvalueonChange, onClose, rightpaneltoogle }) => {
@@ -7,7 +7,7 @@ export const RightPanelComponent = ({ sendRequest, ApiResponse, endPoint, setval
   return <div>
     <div style={{ display: 'flex' }}>
       {rightpaneltoogle ? <span onClick={onClose}>X</span> : null}
-      <div className="flex-center feedback-head" onClick={sendRequest}>
+      <div className="flex-center feedback-head" >
         <h2>Feedback</h2>
       </div>
     </div>
@@ -19,6 +19,7 @@ export const RightPanelComponent = ({ sendRequest, ApiResponse, endPoint, setval
           value={endPoint}
           onChange={setvalueonChange} />
       </Form.Group>
+      <Button variant="primary" onClick={sendRequest}>Send</Button>
 
     </div>
   </div>

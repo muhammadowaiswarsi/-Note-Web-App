@@ -21,3 +21,9 @@
   cursor: pointer;
   font-size: 23px;
 }
+
+.no-exist{
+  widows: 100%;
+  display: flex;
+  justify-content: center;
+}

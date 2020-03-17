@@ -4,8 +4,9 @@ import { connect } from "react-redux";
 import { RouteAction } from "./../../store/actions/index";
 
 class Navbar extends React.Component {
+
   render() {
-    return <NavbarComponent name={this.props.name} />;
+    return <NavbarComponent name={this.props.name} authed={this.props.authed} history={this.props.history} />;
   }
 }
 
@@ -13,7 +14,8 @@ const dispatchToProp = dispatch => {
   return {
     user: obj => {
       dispatch(RouteAction.user(obj));
-    }
+    },
+    authed: (bool) => { dispatch(RouteAction.authed(bool)) },
   };
 };
 

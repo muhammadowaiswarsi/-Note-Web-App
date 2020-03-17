@@ -1,24 +1,24 @@
 import React from "react";
 import { Button } from "react-bootstrap";
 import "./index.css";
+import { logout } from './../../Service/AuthService';
 
-class Navbar extends React.Component {
-  render() {
-    const { name } = this.props;
-    return (
-      <div className="flex-between NavMainDiv MB10">
-        <h4 className="welcome_head">Welcome {name}</h4>
-        <Button
-          className="logount_btn"
-          variant="outline-secondary"
-          onClick={() => this.props.logout()}
-          //   loader={loader}
-        >
-          Logout
+export const Navbar = ({ name, history ,authed}) => {
+  return (
+    <div className="flex-between NavMainDiv MB10">
+      <h4 className="welcome_head">Welcome {name}</h4>
+      <Button
+        className="logount_btn"
+        variant="outline-secondary"
+        onClick={() => { logout();authed(false) }}
+      //   loader={loader}
+      >
+        Logout
         </Button>
-      </div>
-    );
-  }
+    </div>
+  );
 }
+
+
 
 export default Navbar;

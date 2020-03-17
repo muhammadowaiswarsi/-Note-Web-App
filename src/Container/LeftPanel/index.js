@@ -12,21 +12,15 @@ class LeftPanel extends React.Component {
     super()
     this.state = {
       modalopen: false,
-      title: "",
-      content: ""
+
     }
   }
 
-  setvalueonChange = (event) => {
-    this.setState({
-      [event.target.id]: event.target.value
-    })
-  }
+
 
   CreateNote = () => {
-    const { content, title } = this.state;
-    const { user } = this.props;
-
+    const { user, title, content ,onClose} = this.props;
+    console.log(user, title, content)
     AppSync.mutate({
       variables: {
         input: {
@@ -46,20 +40,21 @@ class LeftPanel extends React.Component {
         this.setState({
           content: "",
           title: "",
-          modalopen: false
+          modalopen: false,
         })
+        onClose();
       })
       .catch(err => console.log(err))
   }
   render() {
-    const { user, toogle, onClose } = this.props;
+    const { user, toogle, onClose, setvalueonChange } = this.props;
     const { modalopen } = this.state;
     return (
       <div>
         <CreateNoteModal
           modalopen={modalopen}
           handleClose={() => this.setState({ modalopen: false })}
-          setvalueonChange={this.setvalueonChange}
+          setvalueonChange={setvalueonChange}
           CreateNote={this.CreateNote}
         />
         <Query query={getNotebyUser_id} variables={{ user_id: user.sub }} fetchPolicy="network-only">

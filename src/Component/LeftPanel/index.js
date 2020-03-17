@@ -13,7 +13,7 @@ export const LeftPanelComponent = ({ data, openModalFunction, selected_note, too
       </div>
       <div>
         {data?.getNotebyUser_id &&
-          data.getNotebyUser_id.length &&
+          data.getNotebyUser_id.length ?
           data.getNotebyUser_id.map((item, index) => {
             return (
               <p
@@ -24,7 +24,9 @@ export const LeftPanelComponent = ({ data, openModalFunction, selected_note, too
                 {item.noteTitle}
               </p>
             );
-          })}
+          })
+          : <div className="no-exist">No Notes</div>
+        }
       </div>
     </div>
   );
