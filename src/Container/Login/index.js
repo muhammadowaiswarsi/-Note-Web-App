@@ -43,13 +43,7 @@ class LoginContainer extends React.Component {
     });
     login(email, password)
       .then(res => {
-        let user = res.attributes;
-        localStorage.setItem("user", JSON.stringify(res.attributes));
-        let obj = {
-          email: user.email,
-          user_id: user.sub
-        };
-        this.props.user(obj);
+        this.props.user(res.attributes);
         this.setState({
           loader: false
         });

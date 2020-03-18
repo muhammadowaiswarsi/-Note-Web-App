@@ -8,7 +8,7 @@ class RightPanel extends React.Component {
     super(props)
 
     this.state = {
-      ApiResponse: {},
+      ApiResponse: "",
       endPoint: "",
 
     }
@@ -17,9 +17,10 @@ class RightPanel extends React.Component {
 
   // https://jsonplaceholder.typicode.com/todos
   sendRequest = () => {
+
     const { endPoint } = this.state;
     const { title, content } = this.props
-
+    console.log('endPoint', endPoint)
 
     const options = {
       method: 'POST',
@@ -28,19 +29,26 @@ class RightPanel extends React.Component {
         'Content-Type': 'application/json'
       }
     }
+    try {
 
-    // send POST request
-    fetch(endPoint, options)
-      .then(res => res.json())
-      .then(res => {
-        this.setState({
-          ApiResponse: res
+      // send POST request
+      fetch(endPoint, options)
+        .then(res => res.json())
+        .then(res1 => {
+          this.setState({
+            ApiResponse: res1
+          })
+          console.log(res1)
         })
-        console.log(res)
-      })
-      .catch((err) => console.log('err', err))
+      // .catch((err) => this.setState({ ApiResponse: err }))
+    }
+    catch (err) {
+      this.setState({ ApiResponse: err })
+      throw err
+
+    }
   }
-  
+
   setvalueonChange = (event) => {
     this.setState({
       endPoint: event.target.value
@@ -48,7 +56,7 @@ class RightPanel extends React.Component {
   }
   render() {
     const { ApiResponse, endPoint } = this.state;
-    const { rightpaneltoogle, onClose } = this.props;
+    const { rightpaneltoogle, onClose, selected_note } = this.props;
     return <RightPanelComponent
       ApiResponse={ApiResponse}
       sendRequest={this.sendRequest}
@@ -56,6 +64,7 @@ class RightPanel extends React.Component {
       endPoint={endPoint}
       rightpaneltoogle={rightpaneltoogle}
       onClose={onClose}
+      selected_note={selected_note}
 
     />;
   }

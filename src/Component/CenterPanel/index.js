@@ -3,7 +3,7 @@ import { Col, Row, Image } from "react-bootstrap";
 import './index.css'
 export const CenterPanelComponent = ({ selected_note, title, content, setvalueonChange, updateNote, deleteNote }) => {
   return (
-    <div style={{ width: "100%" }}>
+    <div style={{ width: "100%" ,height:"100%"}}>
       < Row className="header-center" >
         <Col xl={8} md={8} sm={8} xs={8} style={{ height: "100%", display: "flex", alignItems: "center" }}>
           <div className="flex-center input-title">
@@ -22,9 +22,9 @@ export const CenterPanelComponent = ({ selected_note, title, content, setvalueon
 
         </Col>
       </Row >
-      <Row>
+      <Row className="content-body">
         <Col xl={12} md={12} sm={12} className="content-Row">
-          <textarea id="content" value={content} onChange={setvalueonChange} />
+          <textarea disabled={selected_note?.id ? false : true} id="content" value={content} onChange={setvalueonChange} />
         </Col>
       </Row>
 

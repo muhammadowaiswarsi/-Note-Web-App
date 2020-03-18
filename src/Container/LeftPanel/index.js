@@ -20,6 +20,7 @@ class LeftPanel extends React.Component {
 
   CreateNote = () => {
     const { user, title, content ,onClose} = this.props;
+    console.log('user====',user)
     console.log(user, title, content)
     AppSync.mutate({
       variables: {

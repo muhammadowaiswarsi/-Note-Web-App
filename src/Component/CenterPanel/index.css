@@ -1,10 +1,14 @@
 .header-center {
-  height: 65px;
+  height: 90px;
   display: flex;
   align-items: center;
 }
 .header-center col {
   height: 100%;
+}
+.content-body {
+  height: calc(100% - 90px);
+
 }
 
 .header-center .input-title {
@@ -41,7 +45,7 @@
 
 .content-Row {
   min-height: 200px;
-  height: 400px;
+  height: 99%;
 }
 
 .content-Row > textarea {
@@ -53,7 +57,11 @@ input:disabled {
   cursor: not-allowed;
   background: transparent;
 }
-input:focus{
+input:focus {
   cursor: text;
 }
 
+.content-Row > textarea:disabled{
+  cursor: not-allowed;
+  background: transparent;
+}
