@@ -37,18 +37,6 @@ class CenterPanel extends React.Component {
       })
       .catch(err => console.log(err))
   }
-  
-  // componentDidUpdate = (prevProps, prevState) => {
-  //   return (this.props?.selected_note?.id !== prevProps?.selected_note?.id)
-  //     ?
-  //     this.setState({
-  //       note: this.props?.selected_note?.note,
-  //       noteTitle: this.props?.selected_note?.noteTitle,
-  //     })
-  //     :
-  //     null
-  // }
-
 
   render() {
     const { setvalueonChange,title, content , deleteNote} = this.props;

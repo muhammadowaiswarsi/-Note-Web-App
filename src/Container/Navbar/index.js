@@ -5,13 +5,19 @@ import { RouteAction } from "./../../store/actions/index";
 
 class Navbar extends React.Component {
   routes = () => {
-setTimeout(()=>{
-  this.props.history.push('/login')
-},300)    
-  }
+    setTimeout(() => {
+      this.props.history.replace("/login");
+    }, 300);
+  };
 
   render() {
-    return <NavbarComponent name={this.props.name} authed={this.props.authed} history={this.routes} />;
+    return (
+      <NavbarComponent
+        name={this.props.name}
+        authed={this.props.authed}
+        history={this.routes}
+      />
+    );
   }
 }
 
@@ -20,7 +26,9 @@ const dispatchToProp = dispatch => {
     user: obj => {
       dispatch(RouteAction.user(obj));
     },
-    authed: (bool) => { dispatch(RouteAction.authed(bool)) },
+    authed: bool => {
+      dispatch(RouteAction.authed(bool));
+    }
   };
 };
 
