@@ -1,7 +1,13 @@
 import React from "react";
 import "./index.css";
-
-export const LeftPanelComponent = ({ data, openModalFunction, selected_note, toogle, onClose }) => {
+import { DropdownButton, Dropdown } from 'react-bootstrap'
+export const LeftPanelComponent = ({ data, openModalFunction, selected_note, toogle, onClose, acsending, changeSorting }) => {
+  console.log("data.getNotebyUser_id", data)
+  //  data = isReverse ? data?.getNotebyUser_id?.reverse() : data?.getNotebyUser_id
+  const array = acsending ? data?.sort() : data?.reverse()
+  // let myNumericArray = [4, 1, 3, 2];
+  // myNumericArray.sort();     // output is [1, 2, 3, 4]
+  // myNumericArray.reverse();  // output is [4, 3, 2, 1]
   return (
     <div>
       <div style={{ display: 'flex' }}>
@@ -11,10 +17,15 @@ export const LeftPanelComponent = ({ data, openModalFunction, selected_note, too
         </div>
         {toogle ? <span onClick={onClose}>X</span> : null}
       </div>
-      <div>
-        {data?.getNotebyUser_id &&
-          data.getNotebyUser_id.length ?
-          data.getNotebyUser_id.map((item, index) => {
+      <DropdownButton id="dropdown-basic-button" title="Dropdown button">
+        <Dropdown.Item onSelect={(e) => changeSorting(e)} eventKey="Ascending">Ascending</Dropdown.Item>
+        <Dropdown.Item onSelect={(e) => changeSorting(e)} eventKey="Descending">Descending</Dropdown.Item>
+      </DropdownButton>
+      <div>{
+      }
+
+        {array?.length ?
+          array.map((item, index) => {
             return (
               <p
                 className="noteTitle"

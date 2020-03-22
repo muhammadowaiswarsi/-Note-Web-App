@@ -24,7 +24,7 @@ class RightPanel extends React.Component {
 
     const options = {
       method: 'POST',
-      body: JSON.stringify({ noteTitle: title, note: content }),
+      body: JSON.stringify({ note: content }),
       headers: {
         'Content-Type': 'application/json'
       }

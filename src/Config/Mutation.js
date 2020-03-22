@@ -8,6 +8,7 @@ mutation addNote($input: AddNote){
             noteTitle
             user_id
             createdTimeStamp
+            upatedTimeStamp
     }   
 }`;
 

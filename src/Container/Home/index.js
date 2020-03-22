@@ -11,7 +11,7 @@ import Navbar from "./../Navbar";
 import { AppSync } from './../../Config/graphql-config';
 import { deleteNote } from './../../Config/Mutation';
 import { getNotebyUser_id } from './../../Config/Queries';
-
+import { ConfirmationModal } from './../../Component/confirmationModal';
 
 class DashboardContainer extends React.Component {
   constructor(props) {
@@ -23,7 +23,8 @@ class DashboardContainer extends React.Component {
       toogle: false,
       rightpaneltoogle: false,
       title: "",
-      content: ""
+      content: "",
+      deleteModal: false
     };
   }
   componentDidUpdate = (prevProps, prevState) => {
@@ -56,11 +57,11 @@ class DashboardContainer extends React.Component {
         console.log(err);
       });
   };
-  deleteNote = (id) => {
+  deleteNote = () => {
     const { selected_note, user } = this.props;
     AppSync.mutate({
       variables: {
-        id,
+        id: selected_note.id,
         createdTimeStamp: selected_note?.createdTimeStamp
       },
       mutation: deleteNote,
@@ -74,6 +75,7 @@ class DashboardContainer extends React.Component {
         this.setState({
           title: "",
           content: "",
+          deleteModal: false
         })
       })
       .catch(err => console.log(err))
@@ -84,12 +86,16 @@ class DashboardContainer extends React.Component {
     })
   }
   render() {
-    let { toogle, rightpaneltoogle, title, content } = this.state;
+    let { toogle, rightpaneltoogle, title, content, deleteModal } = this.state;
     const { user, selected_note } = this.props
     return (
       <div className="MainContainer">
+        <ConfirmationModal
+          deleteNote={this.deleteNote}
+          deleteModal={deleteModal}
+          handleClose={() => this.setState({ deleteModal: false })} />
         <Row className="NavRow">
-          <Navbar history={this.props.history}/>
+          <Navbar history={this.props.history} />
         </Row>
         <Row className="MainRow">
           <Col className={`leftPanelCol ${toogle ? 'collapsepanel' : "collapsepanel-off"} `} xl={2} md={2}>
@@ -100,17 +106,17 @@ class DashboardContainer extends React.Component {
               title={title}
               content={content}
               toogle={toogle}
-              onClose={() => this.setState({ toogle: false , title: "",content: ""})} />
+              onClose={() => this.setState({ toogle: false, title: "", content: "" })} />
           </Col>
 
           <Col className="CenterPanelCol" xl={7} md={7} sm={12}>
             <Image src={require('./../../assets/icons/menu.png')} onClick={() => this.setState({ toogle: true, rightpaneltoogle: false })} />
             <CenterPanel user={user}
               setvalueonChange={this.setvalueonChange}
-              deleteNote={this.deleteNote}
               title={title}
               content={content}
               fieldEmpty={this.fieldEmpty}
+              deleteModalConfirmation={() => this.setState({ deleteModal: true })}
             />
             <Image className="rightpanelMenu" src={require('./../../assets/icons/menu.png')} onClick={() => this.setState({ rightpaneltoogle: true, toogle: false })} />
 

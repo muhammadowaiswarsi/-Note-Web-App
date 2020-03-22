@@ -12,15 +12,20 @@ class LeftPanel extends React.Component {
     super()
     this.state = {
       modalopen: false,
-
+      acsending: false,
     }
   }
 
-
+  changeSorting = (sorting) => {
+    console.log('sorting', sorting)
+    this.setState({
+      acsending: sorting === "Descending" ? true : false
+    })
+  }
 
   CreateNote = () => {
-    const { user, title, content ,onClose} = this.props;
-    console.log('user====',user)
+    const { user, title, content, onClose } = this.props;
+    console.log('user====', user)
     console.log(user, title, content)
     AppSync.mutate({
       variables: {
@@ -28,7 +33,8 @@ class LeftPanel extends React.Component {
           note: content,
           noteTitle: title,
           user_id: user.sub,
-          createdTimeStamp: new Date().getTime().toString()
+          createdTimeStamp: new Date().getTime().toString(),
+          upatedTimeStamp: new Date().getTime().toString()
         }
       },
       mutation: addNote,
@@ -49,7 +55,8 @@ class LeftPanel extends React.Component {
   }
   render() {
     const { user, toogle, onClose, setvalueonChange } = this.props;
-    const { modalopen } = this.state;
+    const { modalopen, acsending } = this.state;
+    console.log('acsending', acsending)
     return (
       <div>
         <CreateNoteModal
@@ -62,11 +69,13 @@ class LeftPanel extends React.Component {
           {({ data, error }) => {
             return (
               <LeftPanelComponent
-                data={data}
+                data={data?.getNotebyUser_id}
                 selected_note={this.props.selected_note}
                 openModalFunction={() => this.setState({ modalopen: true })}
                 toogle={toogle}
                 onClose={onClose}
+                changeSorting={this.changeSorting}
+                acsending={acsending}
               />
             );
           }}
@@ -75,7 +84,7 @@ class LeftPanel extends React.Component {
     );
   }
 }
-
+// acsending ? data?.getNotebyUser_id?.reverse() : data?.getNotebyUser_id?.reverse()
 const mapDispatchToProp = dispatch => {
   return {
     selected_note: payload => {

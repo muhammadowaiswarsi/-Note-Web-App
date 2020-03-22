@@ -8,7 +8,7 @@ class CenterPanel extends React.Component {
   constructor(props) {
     super(props)
     this.state = {
-     
+
     }
   }
 
@@ -20,7 +20,8 @@ class CenterPanel extends React.Component {
           note: content,
           noteTitle: title,
           id,
-          createdTimeStamp: selected_note?.createdTimeStamp
+          createdTimeStamp: selected_note?.createdTimeStamp,
+          upatedTimeStamp: new Date().getTime().toString()
 
         }
       },
@@ -37,21 +38,11 @@ class CenterPanel extends React.Component {
       })
       .catch(err => console.log(err))
   }
-  
-  // componentDidUpdate = (prevProps, prevState) => {
-  //   return (this.props?.selected_note?.id !== prevProps?.selected_note?.id)
-  //     ?
-  //     this.setState({
-  //       note: this.props?.selected_note?.note,
-  //       noteTitle: this.props?.selected_note?.noteTitle,
-  //     })
-  //     :
-  //     null
-  // }
+
 
 
   render() {
-    const { setvalueonChange,title, content , deleteNote} = this.props;
+    const { setvalueonChange, title, content, deleteModalConfirmation } = this.props;
     return (
       <CenterPanelComponent
         selected_note={this.props.selected_note}
@@ -59,7 +50,7 @@ class CenterPanel extends React.Component {
         content={content}
         setvalueonChange={setvalueonChange}
         updateNote={this.updateNote}
-        deleteNote={deleteNote}
+        deleteModalConfirmation={deleteModalConfirmation}
 
       />
     )

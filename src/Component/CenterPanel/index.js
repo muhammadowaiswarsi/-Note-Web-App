@@ -1,9 +1,9 @@
 import React from "react";
 import { Col, Row, Image } from "react-bootstrap";
 import './index.css'
-export const CenterPanelComponent = ({ selected_note, title, content, setvalueonChange, updateNote, deleteNote }) => {
+export const CenterPanelComponent = ({ selected_note, title, content, setvalueonChange, updateNote, deleteModalConfirmation }) => {
   return (
-    <div style={{ width: "100%" ,height:"100%"}}>
+    <div style={{ width: "100%", height: "100%" }}>
       < Row className="header-center" >
         <Col xl={8} md={8} sm={8} xs={8} style={{ height: "100%", display: "flex", alignItems: "center" }}>
           <div className="flex-center input-title">
@@ -15,7 +15,7 @@ export const CenterPanelComponent = ({ selected_note, title, content, setvalueon
             <span className="icon-span icon-1" onClick={() => updateNote(selected_note.id)}>
               <Image src={require('./../../assets/icons/saveimage.png')} style={{ width: "25px", cursor: "pointer" }} />
             </span>
-            <span className="icon-span" onClick={() => deleteNote(selected_note.id)}>
+            <span className="icon-span" onClick={selected_note?.id ? deleteModalConfirmation : ""}>
               <Image src={require('./../../assets/icons/dustbin.png')} style={{ width: "25px", cursor: "pointer" }} />
             </span>
           </div>
