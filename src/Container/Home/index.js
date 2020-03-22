@@ -85,7 +85,7 @@ class DashboardContainer extends React.Component {
   };
   render() {
     let { toogle, rightpaneltoogle, title, content, deleteModal } = this.state;
-    const { user, selected_note } = this.props
+    const { user } = this.props
     return (
       <div className="MainContainer">
         <ConfirmationModal

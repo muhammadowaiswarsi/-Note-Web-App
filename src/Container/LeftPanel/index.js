@@ -17,7 +17,6 @@ class LeftPanel extends React.Component {
   }
 
   changeSorting = (sorting) => {
-    console.log('sorting', sorting)
     this.setState({
       acsending: sorting === "Descending" ? true : false
     })
@@ -55,7 +54,6 @@ class LeftPanel extends React.Component {
   render() {
     const { user, toogle, onClose, setvalueonChange } = this.props;
     const { modalopen, acsending } = this.state;
-    console.log('acsending', acsending)
     return (
       <div>
         <CreateNoteModal
@@ -65,7 +63,7 @@ class LeftPanel extends React.Component {
           CreateNote={this.CreateNote}
         />
         <Query query={getNotebyUser_id} variables={{ user_id: user.sub }} fetchPolicy="network-only">
-          {({ data, error }) => {
+          {({ data, error, loading }) => {
             return (
               <LeftPanelComponent
                 data={data?.getNotebyUser_id}
@@ -75,6 +73,7 @@ class LeftPanel extends React.Component {
                 onClose={onClose}
                 changeSorting={this.changeSorting}
                 acsending={acsending}
+                loading={loading}
               />
             );
           }}

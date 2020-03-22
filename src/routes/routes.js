@@ -5,7 +5,7 @@ import DashboardContainer from "../Container/Home";
 import SignupConfirmation from "../Container/SignupConfirmation";
 import SignupContainer from "../Container/Signup";
 import { connect } from "react-redux";
-import RouteAction from "../store/actions/RouteAction";
+import RouteAction from "../store/actions/routeAction";
 import Loading from "./../Container/LoaderScreen";
 import { isLoggedIn } from "./../Service/AuthService";
 

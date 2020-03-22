@@ -12,15 +12,12 @@ class RightPanel extends React.Component {
 
   }
 
-  // https://jsonplaceholder.typicode.com/todos
   sendRequest = () => {
     const { endPoint } = this.state;
     const { title, content } = this.props
-    console.log('endPoint', endPoint)
-
-    const options = {
+      const options = {
       method: 'POST',
-      body: JSON.stringify({ note: content }),
+      body: JSON.stringify({ data: content }),
       headers: {
         'Content-Type': 'application/json'
       }
@@ -35,7 +32,6 @@ class RightPanel extends React.Component {
           })
           console.log(res1)
         })
-      // .catch((err) => this.setState({ ApiResponse: err }))
     }
     catch (err) {
       this.setState({ ApiResponse: err })

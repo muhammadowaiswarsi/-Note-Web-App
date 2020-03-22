@@ -1,6 +1,6 @@
 import React from "react";
 import { isLoggedIn } from "./../../Service/AuthService";
-import RouteAction from "../../store/actions/RouteAction";
+import RouteAction from "../../store/actions/routeAction";
 import { connect } from "react-redux";
 import ReactLoading from "react-loading";
 
