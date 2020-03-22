@@ -4,7 +4,7 @@ import { Col } from "react-bootstrap";
 import "./index.css";
 import { login } from "./../../Service/AuthService";
 import { connect } from "react-redux";
-import RouteAction from "../../store/actions/routeAction";
+import RouteAction from "../../store/actions/RouteAction";
 import { Error } from "./../../Shared/Error";
 import { isLoggedIn } from "./../../Service/AuthService";
 
@@ -18,10 +18,8 @@ class LoginContainer extends React.Component {
   }
 
   componentDidMount() {
-    console.log("login container");
     isLoggedIn()
       .then(res => {
-        console.log('res.attributes.sub',res.attributes.sub)
         if (res.attributes.sub) {
           const user = res.attributes;
           this.props.user(user);

@@ -1,13 +1,8 @@
 import React from "react";
 import "./index.css";
 import { DropdownButton, Dropdown } from 'react-bootstrap'
-export const LeftPanelComponent = ({ data, openModalFunction, selected_note, toogle, onClose, acsending, changeSorting }) => {
-  console.log("data.getNotebyUser_id", data)
-  //  data = isReverse ? data?.getNotebyUser_id?.reverse() : data?.getNotebyUser_id
-  const array = acsending ? data?.sort() : data?.reverse()
-  // let myNumericArray = [4, 1, 3, 2];
-  // myNumericArray.sort();     // output is [1, 2, 3, 4]
-  // myNumericArray.reverse();  // output is [4, 3, 2, 1]
+export const LeftPanelComponent = ({ loading, data, openModalFunction, selected_note, toogle, onClose, acsending, changeSorting }) => {
+  // const array = acsending ? data?.sort() : data?.reverse()
   return (
     <div>
       <div style={{ display: 'flex' }}>
@@ -24,19 +19,21 @@ export const LeftPanelComponent = ({ data, openModalFunction, selected_note, too
       <div>{
       }
 
-        {array?.length ?
-          array.map((item, index) => {
-            return (
-              <p
-                className="noteTitle"
-                onClick={() => selected_note(item)}
-                key={index}
-              >
-                {item.noteTitle}
-              </p>
-            );
-          })
-          : <div className="no-exist">No Notes</div>
+        {
+          loading ? <div>loading...</div> :
+            data?.length ?
+              data.map((item, index) => {
+                return (
+                  <p
+                    className="noteTitle"
+                    onClick={() => selected_note(item)}
+                    key={index}
+                  >
+                    {item.noteTitle}
+                  </p>
+                );
+              })
+              : <div className="no-exist">No Notes</div>
         }
       </div>
     </div>

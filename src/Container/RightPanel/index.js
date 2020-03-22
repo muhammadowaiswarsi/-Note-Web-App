@@ -1,12 +1,9 @@
 import React from "react";
 import { RightPanelComponent } from "./../../Component/RightPanel";
 
-
 class RightPanel extends React.Component {
-
   constructor(props) {
-    super(props)
-
+    super(props);
     this.state = {
       ApiResponse: "",
       endPoint: "",
@@ -17,7 +14,6 @@ class RightPanel extends React.Component {
 
   // https://jsonplaceholder.typicode.com/todos
   sendRequest = () => {
-
     const { endPoint } = this.state;
     const { title, content } = this.props
     console.log('endPoint', endPoint)
@@ -28,9 +24,8 @@ class RightPanel extends React.Component {
       headers: {
         'Content-Type': 'application/json'
       }
-    }
+    };
     try {
-
       // send POST request
       fetch(endPoint, options)
         .then(res => res.json())
@@ -52,8 +47,8 @@ class RightPanel extends React.Component {
   setvalueonChange = (event) => {
     this.setState({
       endPoint: event.target.value
-    })
-  }
+    });
+  };
   render() {
     const { ApiResponse, endPoint } = this.state;
     const { rightpaneltoogle, onClose, selected_note } = this.props;

@@ -25,7 +25,6 @@ class LeftPanel extends React.Component {
 
   CreateNote = () => {
     const { user, title, content, onClose } = this.props;
-    console.log('user====', user)
     console.log(user, title, content)
     AppSync.mutate({
       variables: {
@@ -92,13 +91,5 @@ const mapDispatchToProp = dispatch => {
     }
   };
 };
-
-// const mapStateToProp = state => {
-//   let { RouteReducer } = state;
-//   console.log(RouteReducer);
-//   return {
-//     user: RouteReducer.user
-//   };
-// };
 
 export default connect(null, mapDispatchToProp)(LeftPanel);

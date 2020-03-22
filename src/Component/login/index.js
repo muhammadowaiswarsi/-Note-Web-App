@@ -47,7 +47,7 @@ class Login extends Component {
 
                     <div className={"flex-between MB20"}>
                         <Button onClick={(e) => this.submit(e)} title="Login" loader={loader} />
-                        <Button onClick={() => history.push(`./registration`)} title="Register" />
+                        <Button onClick={() => history.replace(`./registration`)} title="Register" />
                     </div>
                 </form>
             </div>

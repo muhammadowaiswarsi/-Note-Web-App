@@ -28,15 +28,13 @@ class DashboardContainer extends React.Component {
     };
   }
   componentDidUpdate = (prevProps, prevState) => {
-    return (this.props?.selected_note?.id !== prevProps?.selected_note?.id)
-      ?
-      this.setState({
-        title: this.props?.selected_note?.noteTitle,
-        content: this.props?.selected_note?.note,
-      })
-      :
-      null
-  }
+    return this.props?.selected_note?.id !== prevProps?.selected_note?.id
+      ? this.setState({
+          title: this.props?.selected_note?.noteTitle,
+          content: this.props?.selected_note?.note
+        })
+      : null;
+  };
 
   logout = () => {
     this.setState({
@@ -78,13 +76,13 @@ class DashboardContainer extends React.Component {
           deleteModal: false
         })
       })
-      .catch(err => console.log(err))
-  }
-  setvalueonChange = (event) => {
+      .catch(err => console.log(err));
+  };
+  setvalueonChange = event => {
     this.setState({
       [event.target.id]: event.target.value
-    })
-  }
+    });
+  };
   render() {
     let { toogle, rightpaneltoogle, title, content, deleteModal } = this.state;
     const { user, selected_note } = this.props
@@ -110,19 +108,35 @@ class DashboardContainer extends React.Component {
           </Col>
 
           <Col className="CenterPanelCol" xl={7} md={7} sm={12}>
-            <Image src={require('./../../assets/icons/menu.png')} onClick={() => this.setState({ toogle: true, rightpaneltoogle: false })} />
-            <CenterPanel user={user}
+            <Image
+              src={require("./../../assets/icons/menu.png")}
+              onClick={() =>
+                this.setState({ toogle: true, rightpaneltoogle: false })
+              }
+            />
+            <CenterPanel
+              user={user}
               setvalueonChange={this.setvalueonChange}
               title={title}
               content={content}
               fieldEmpty={this.fieldEmpty}
               deleteModalConfirmation={() => this.setState({ deleteModal: true })}
             />
-            <Image className="rightpanelMenu" src={require('./../../assets/icons/menu.png')} onClick={() => this.setState({ rightpaneltoogle: true, toogle: false })} />
-
+            <Image
+              className="rightpanelMenu"
+              src={require("./../../assets/icons/menu.png")}
+              onClick={() =>
+                this.setState({ rightpaneltoogle: true, toogle: false })
+              }
+            />
           </Col>
-          <Col className={`RightPanelCol ${rightpaneltoogle ? 'collapsepanel' : "collapsepanel-off"} `} xl={3} md={3} >
-
+          <Col
+            className={`RightPanelCol ${
+              rightpaneltoogle ? "collapsepanel" : "collapsepanel-off"
+            } `}
+            xl={3}
+            md={3}
+          >
             <RightPanel
               rightpaneltoogle={rightpaneltoogle}
               onClose={() => this.setState({ rightpaneltoogle: false })}
@@ -130,7 +144,6 @@ class DashboardContainer extends React.Component {
               content={content}
               selected_note={this.props.selected_note}
             />
-
           </Col>
 
           {/* <Dashboard logout={this.logout} loader={loader} /> */}
@@ -153,7 +166,6 @@ const mapStateToProp = state => {
     selected_note: state.NoteReducer.selected_note,
     user: state.routeReducer.user
   };
-
 };
 
 export default connect(mapStateToProp, mapDispatchToProp)(DashboardContainer);

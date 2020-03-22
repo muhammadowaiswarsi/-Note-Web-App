@@ -1,12 +1,11 @@
 import React from "react";
 import { isLoggedIn } from "./../../Service/AuthService";
-import RouteAction from "../../store/actions/routeAction";
+import RouteAction from "../../store/actions/RouteAction";
 import { connect } from "react-redux";
 import ReactLoading from "react-loading";
 
 class Loading extends React.Component {
   componentDidMount() {
-    console.log("loader screen");
     isLoggedIn()
       .then(res => {
         if (res.attributes.sub) {
