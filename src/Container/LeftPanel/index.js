@@ -7,25 +7,21 @@ import { NoteAction } from "./../../store/actions";
 import { connect } from "react-redux";
 import { CreateNoteModal } from "./../../Component/createNoteModal";
 import { AppSync } from "./../../Config/graphql-config";
+import { DropdownButton, Dropdown } from "react-bootstrap";
+
 class LeftPanel extends React.Component {
   constructor() {
     super();
     this.state = {
       modalopen: false,
-      acsending: true,
       sorting: "Ascending"
     };
   }
 
   changeSorting = sorting => {
     this.setState({
-      acsending: sorting === "Descending" ? true : false
-    });
-    if (sorting === "Ascending") {
-      this.setState({ sorting: "Descending", acsending: false });
-    } else if (sorting === "Descending") {
-      this.setState({ sorting: "Ascending", acsending: true });
-    }
+      sorting
+    })
   };
 
   sortAscending = data =>
@@ -66,7 +62,7 @@ class LeftPanel extends React.Component {
   };
   render() {
     const { user, toogle, onClose, setvalueonChange } = this.props;
-    const { modalopen, acsending, sorting } = this.state;
+    const { modalopen, sorting } = this.state;
     console.log(sorting, "sorting");
     return (
       <div>
@@ -84,21 +80,31 @@ class LeftPanel extends React.Component {
           {({ data, loading }) => {
             let array = data?.getNotebyUser_id ? data.getNotebyUser_id : [];
             return (
-              <LeftPanelComponent
-                data={
-                  acsending
-                    ? this.sortAscending(array)
-                    : this.sortDescending(array)
-                }
-                selected_note={this.props.selected_note}
-                openModalFunction={() => this.setState({ modalopen: true })}
-                toogle={toogle}
-                onClose={onClose}
-                changeSorting={this.changeSorting}
-                acsending={acsending}
-                sorting={sorting}
-                loading={loading}
-              />
+              <div>
+                <div style={{ display: "flex" }}>
+                  <div className="flex-center note-head" onClick={() => this.setState({ modalopen: true })}>
+                    <h2>New Note</h2>
+                  </div>
+                  {toogle ? <span onClick={onClose}>X</span> : null}
+                </div>
+                <DropdownButton id="dropdown-basic-button" title={sorting}>
+                  <Dropdown.Item onSelect={e => this.changeSorting(e)} eventKey="Ascending">
+                    Ascending
+        </Dropdown.Item>
+                  <Dropdown.Item onSelect={e => this.changeSorting(e)} eventKey="Descending">
+                    Descending
+        </Dropdown.Item>
+                </DropdownButton>
+                <LeftPanelComponent
+                  data={
+                    sorting === 'Ascending'
+                      ? this.sortAscending(array)
+                      : this.sortDescending(array)
+                  }
+                  selected_note={this.props.selected_note}
+                  loading={loading}
+                />
+              </div>
             );
           }}
         </Query>

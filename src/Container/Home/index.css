@@ -7,6 +7,18 @@
   border-right: 2px solid #000;
 }
 
+.MainContainer .leftPanelCol .dropdown .dropdown-toggle {
+  /* height: 500px; */
+  width: 100%;
+}
+.MainContainer .leftPanelCol .dropdown .dropdown-menu {
+  /* height: 500px; */
+  width: 100%;
+}
+.MainContainer .leftPanelCol .dropdown .dropdown-menu a {
+  display: flex;
+  justify-content: center;
+}
 .MainContainer .CenterPanelCol {
   /* height: 500px; */
   border-right: 2px solid #000;
