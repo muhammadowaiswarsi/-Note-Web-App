@@ -21,6 +21,7 @@ const getNotebyUser_id = gql`
       noteTitle
       user_id
       createdTimeStamp
+      upatedTimeStamp
     }
   }
 `;
