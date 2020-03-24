@@ -6,20 +6,18 @@ class RightPanel extends React.Component {
     super(props);
     this.state = {
       ApiResponse: "",
-      endPoint: "",
-
-    }
-
+      endPoint: ""
+    };
   }
 
   sendRequest = () => {
     const { endPoint } = this.state;
-    const { title, content } = this.props
-      const options = {
-      method: 'POST',
+    const { content } = this.props;
+    const options = {
+      method: "POST",
       body: JSON.stringify({ data: content }),
       headers: {
-        'Content-Type': 'application/json'
+        "Content-Type": "application/json"
       }
     };
     try {
@@ -29,18 +27,15 @@ class RightPanel extends React.Component {
         .then(res1 => {
           this.setState({
             ApiResponse: res1
-          })
-          console.log(res1)
-        })
+          });
+        });
+    } catch (err) {
+      this.setState({ ApiResponse: err });
+      throw err;
     }
-    catch (err) {
-      this.setState({ ApiResponse: err })
-      throw err
+  };
 
-    }
-  }
-
-  setvalueonChange = (event) => {
+  setvalueonChange = event => {
     this.setState({
       endPoint: event.target.value
     });
@@ -48,16 +43,17 @@ class RightPanel extends React.Component {
   render() {
     const { ApiResponse, endPoint } = this.state;
     const { rightpaneltoogle, onClose, selected_note } = this.props;
-    return <RightPanelComponent
-      ApiResponse={ApiResponse}
-      sendRequest={this.sendRequest}
-      setvalueonChange={this.setvalueonChange}
-      endPoint={endPoint}
-      rightpaneltoogle={rightpaneltoogle}
-      onClose={onClose}
-      selected_note={selected_note}
-
-    />;
+    return (
+      <RightPanelComponent
+        ApiResponse={ApiResponse}
+        sendRequest={this.sendRequest}
+        setvalueonChange={this.setvalueonChange}
+        endPoint={endPoint}
+        rightpaneltoogle={rightpaneltoogle}
+        onClose={onClose}
+        selected_note={selected_note}
+      />
+    );
   }
 }
 
