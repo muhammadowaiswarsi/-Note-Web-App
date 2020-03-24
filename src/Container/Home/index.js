@@ -2,7 +2,7 @@ import React from "react";
 import { Col, Row, Image } from "react-bootstrap";
 import "./index.css";
 import { connect } from "react-redux";
-import RouteAction from "../../store/actions/routeAction";
+import RouteAction from "../../store/actions/RouteAction";
 import { logout } from "../../Service/AuthService";
 import LeftPanel from "./../LeftPanel";
 import CenterPanel from "./../CenterPanel";
