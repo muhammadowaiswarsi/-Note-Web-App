@@ -1,7 +1,7 @@
 import React from "react";
-import { Col, Row, Image } from "react-bootstrap";
+import { Col, Row, Image, Button } from "react-bootstrap";
 import './index.css'
-export const CenterPanelComponent = ({ selected_note, title, content, setvalueonChange, updateNote, deleteModalConfirmation }) => {
+export const CenterPanelComponent = ({ selected_note, title, content, setvalueonChange, updateNote, deleteModalConfirmation, getSelectedText }) => {
   return (
     <div style={{ width: "100%", height: "100%" }}>
       < Row className="header-center" >
@@ -24,7 +24,7 @@ export const CenterPanelComponent = ({ selected_note, title, content, setvalueon
       </Row >
       <Row className="content-body">
         <Col xl={12} md={12} sm={12} className="content-Row">
-          <textarea disabled={selected_note?.id ? false : true} id="content" value={content} onChange={setvalueonChange} />
+          <textarea disabled={selected_note?.id ? false : true} id="content" value={content} onChange={setvalueonChange} onMouseUp={getSelectedText} />
         </Col>
       </Row>
 

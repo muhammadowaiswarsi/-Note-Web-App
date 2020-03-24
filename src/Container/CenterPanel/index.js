@@ -42,7 +42,7 @@ class CenterPanel extends React.Component {
 
 
   render() {
-    const { setvalueonChange, title, content, deleteModalConfirmation } = this.props;
+    const { setvalueonChange, title, content, deleteModalConfirmation, getSelectedText } = this.props;
     return (
       <CenterPanelComponent
         selected_note={this.props.selected_note}
@@ -51,7 +51,7 @@ class CenterPanel extends React.Component {
         setvalueonChange={setvalueonChange}
         updateNote={this.updateNote}
         deleteModalConfirmation={deleteModalConfirmation}
-
+        getSelectedText={getSelectedText}
       />
     )
   }

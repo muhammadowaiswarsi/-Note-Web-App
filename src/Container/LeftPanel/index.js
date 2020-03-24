@@ -30,9 +30,38 @@ class LeftPanel extends React.Component {
   sortDescending = data =>
     data.sort((a, b) => b.upatedTimeStamp - a.upatedTimeStamp);
 
-  sortAscendingByName = data => data.sort((a, b) => a.noteTitle - b.noteTitle);
+  sortAscendingByName = data => data.sort(this.ascendingCompare);
 
-  sortDescendingByName = data => data.sort((a, b) => b.noteTitle - a.noteTitle);
+  sortDescendingByName = data => data.sort(this.decendingCompare);
+
+
+  ascendingCompare = (a, b) => {
+    // Use toUpperCase() to ignore character casing
+    const bandA = a.noteTitle.toUpperCase();
+    const bandB = b.noteTitle.toUpperCase();
+
+    let comparison = 0;
+    if (bandA > bandB) {
+      comparison = 1;
+    } else if (bandA < bandB) {
+      comparison = -1;
+    }
+    return comparison;
+  }
+  decendingCompare = (a, b) => {
+    // Use toUpperCase() to ignore character casing
+    const bandA = a.noteTitle.toUpperCase();
+    const bandB = b.noteTitle.toUpperCase();
+
+    let comparison = 0;
+    if (bandA > bandB) {
+      comparison = -1;
+    } else if (bandA < bandB) {
+      comparison = 1;
+    }
+    return comparison;
+  }
+
 
   CreateNote = () => {
     const { user, title, content, onClose } = this.props;
@@ -69,7 +98,7 @@ class LeftPanel extends React.Component {
     const { user, toogle, onClose, setvalueonChange } = this.props;
     const { modalopen, sorting } = this.state;
     return (
-      <div>
+      <div style={{ height: "100%" }}>
         <CreateNoteModal
           modalopen={modalopen}
           handleClose={() => this.setState({ modalopen: false })}
@@ -84,7 +113,7 @@ class LeftPanel extends React.Component {
           {({ data, loading }) => {
             let array = data?.getNotebyUser_id ? data.getNotebyUser_id : [];
             return (
-              <div>
+              <div style={{ height: "100%" }}>
                 <div style={{ display: "flex" }}>
                   <div
                     className="flex-center note-head"
@@ -125,10 +154,10 @@ class LeftPanel extends React.Component {
                     sorting === "Sort By Last Modified - Ascending"
                       ? this.sortAscending(array)
                       : sorting === "Sort By Last Modified - Descending"
-                      ? this.sortDescending(array)
-                      : sorting === "Sort By Name - Ascending"
-                      ? this.sortAscendingByName(array)
-                      : this.sortDescendingByName(array)
+                        ? this.sortDescending(array)
+                        : sorting === "Sort By Name - Ascending"
+                          ? this.sortAscendingByName(array)
+                          : this.sortDescendingByName(array)
                   }
                   selected_note={this.props.selected_note}
                   loading={loading}

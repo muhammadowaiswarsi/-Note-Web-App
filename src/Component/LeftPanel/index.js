@@ -6,15 +6,15 @@ export const LeftPanelComponent = ({
   selected_note,
 }) => {
   return (
-    <div>
-      <div>
+    <div style={{ height: 'calc(100% - 133px)', display: 'flex' }}>
+      <div style={{ overflowY: "auto", width: "100%",overflowX:"hidden" }} className="scroll-custom">
         {loading ? (
           <div>loading...</div>
         ) : data?.length ? (
           data.map((item, index) => {
             return (
               <p
-                className="noteTitle"
+                className="noteTitle trucate"
                 onClick={() => selected_note(item)}
                 key={index}
               >
@@ -23,8 +23,8 @@ export const LeftPanelComponent = ({
             );
           })
         ) : (
-          <div className="no-exist">No Notes</div>
-        )}
+              <div className="no-exist">No Notes</div>
+            )}
       </div>
     </div>
   );

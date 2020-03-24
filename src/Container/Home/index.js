@@ -2,7 +2,7 @@ import React from "react";
 import { Col, Row, Image } from "react-bootstrap";
 import "./index.css";
 import { connect } from "react-redux";
-import RouteAction from "../../store/actions/RouteAction";
+import RouteAction from "../../store/actions/routeAction";
 import { logout } from "../../Service/AuthService";
 import LeftPanel from "./../LeftPanel";
 import CenterPanel from "./../CenterPanel";
@@ -24,15 +24,16 @@ class DashboardContainer extends React.Component {
       rightpaneltoogle: false,
       title: "",
       content: "",
-      deleteModal: false
+      deleteModal: false,
+      selectedText: ""
     };
   }
   componentDidUpdate = (prevProps, prevState) => {
     return this.props?.selected_note?.id !== prevProps?.selected_note?.id
       ? this.setState({
-          title: this.props?.selected_note?.noteTitle,
-          content: this.props?.selected_note?.note
-        })
+        title: this.props?.selected_note?.noteTitle,
+        content: this.props?.selected_note?.note
+      })
       : null;
   };
 
@@ -85,8 +86,16 @@ class DashboardContainer extends React.Component {
       [event.target.id]: event.target.value
     });
   };
+
+  getSelectedText = () => {
+    let text = window.getSelection().toString()
+    this.setState({
+      selectedText: text
+    })
+  }
   render() {
-    let { toogle, rightpaneltoogle, title, content, deleteModal } = this.state;
+    let { toogle, rightpaneltoogle, title, content, deleteModal, selectedText } = this.state;
+    console.log('selectedText', selectedText)
     const { user } = this.props;
     return (
       <div className="MainContainer">
@@ -102,7 +111,7 @@ class DashboardContainer extends React.Component {
           <Col
             className={`leftPanelCol ${
               toogle ? "collapsepanel" : "collapsepanel-off"
-            } `}
+              } `}
             xl={3}
             md={3}
           >
@@ -134,6 +143,7 @@ class DashboardContainer extends React.Component {
               deleteModalConfirmation={() =>
                 this.setState({ deleteModal: true })
               }
+              getSelectedText={this.getSelectedText}
             />
             <Image
               className="rightpanelMenu"
@@ -146,7 +156,7 @@ class DashboardContainer extends React.Component {
           <Col
             className={`RightPanelCol ${
               rightpaneltoogle ? "collapsepanel" : "collapsepanel-off"
-            } `}
+              } `}
             xl={3}
             md={3}
           >
@@ -154,7 +164,7 @@ class DashboardContainer extends React.Component {
               rightpaneltoogle={rightpaneltoogle}
               onClose={() => this.setState({ rightpaneltoogle: false })}
               title={title}
-              content={content}
+              content={selectedText ? selectedText : content}
               selected_note={this.props.selected_note}
             />
           </Col>
