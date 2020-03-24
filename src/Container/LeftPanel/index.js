@@ -14,14 +14,14 @@ class LeftPanel extends React.Component {
     super();
     this.state = {
       modalopen: false,
-      sorting: "Ascending"
+      sorting: "Sort By Last Modified - Descending"
     };
   }
 
   changeSorting = sorting => {
     this.setState({
       sorting
-    })
+    });
   };
 
   sortAscending = data =>
@@ -29,6 +29,10 @@ class LeftPanel extends React.Component {
 
   sortDescending = data =>
     data.sort((a, b) => b.upatedTimeStamp - a.upatedTimeStamp);
+
+  sortAscendingByName = data => data.sort((a, b) => a.noteTitle - b.noteTitle);
+
+  sortDescendingByName = data => data.sort((a, b) => b.noteTitle - a.noteTitle);
 
   CreateNote = () => {
     const { user, title, content, onClose } = this.props;
@@ -61,9 +65,9 @@ class LeftPanel extends React.Component {
       .catch(err => console.log(err));
   };
   render() {
+    console.log(this.state.sorting, "asdfasdf ")
     const { user, toogle, onClose, setvalueonChange } = this.props;
     const { modalopen, sorting } = this.state;
-    console.log(sorting, "sorting");
     return (
       <div>
         <CreateNoteModal
@@ -82,24 +86,49 @@ class LeftPanel extends React.Component {
             return (
               <div>
                 <div style={{ display: "flex" }}>
-                  <div className="flex-center note-head" onClick={() => this.setState({ modalopen: true })}>
+                  <div
+                    className="flex-center note-head"
+                    onClick={() => this.setState({ modalopen: true })}
+                  >
                     <h2>New Note</h2>
                   </div>
                   {toogle ? <span onClick={onClose}>X</span> : null}
                 </div>
                 <DropdownButton id="dropdown-basic-button" title={sorting}>
-                  <Dropdown.Item onSelect={e => this.changeSorting(e)} eventKey="Ascending">
-                    Ascending
-        </Dropdown.Item>
-                  <Dropdown.Item onSelect={e => this.changeSorting(e)} eventKey="Descending">
-                    Descending
-        </Dropdown.Item>
+                  <Dropdown.Item
+                    onSelect={e => this.changeSorting(e)}
+                    eventKey="Sort By Last Modified - Ascending"
+                  >
+                    Sort By Last Modified - Ascending
+                  </Dropdown.Item>
+                  <Dropdown.Item
+                    onSelect={e => this.changeSorting(e)}
+                    eventKey="Sort By Last Modified - Descending"
+                  >
+                    Sort By Last Modified - Descending
+                  </Dropdown.Item>
+                  <Dropdown.Item
+                    onSelect={e => this.changeSorting(e)}
+                    eventKey="Sort By Name - Ascending"
+                  >
+                    Sort By Name - Ascending
+                  </Dropdown.Item>
+                  <Dropdown.Item
+                    onSelect={e => this.changeSorting(e)}
+                    eventKey="Sort By Name - Descending"
+                  >
+                    Sort By Name - Descending
+                  </Dropdown.Item>
                 </DropdownButton>
                 <LeftPanelComponent
                   data={
-                    sorting === 'Ascending'
+                    sorting === "Sort By Last Modified - Ascending"
                       ? this.sortAscending(array)
-                      : this.sortDescending(array)
+                      : sorting === "Sort By Last Modified - Descending"
+                      ? this.sortDescending(array)
+                      : sorting === "Sort By Name - Ascending"
+                      ? this.sortAscendingByName(array)
+                      : this.sortDescendingByName(array)
                   }
                   selected_note={this.props.selected_note}
                   loading={loading}

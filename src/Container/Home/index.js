@@ -8,10 +8,10 @@ import LeftPanel from "./../LeftPanel";
 import CenterPanel from "./../CenterPanel";
 import RightPanel from "./../RightPanel";
 import Navbar from "./../Navbar";
-import { AppSync } from './../../Config/graphql-config';
-import { deleteNote } from './../../Config/Mutation';
-import { getNotebyUser_id } from './../../Config/Queries';
-import { ConfirmationModal } from './../../Component/confirmationModal';
+import { AppSync } from "./../../Config/graphql-config";
+import { deleteNote } from "./../../Config/Mutation";
+import { getNotebyUser_id } from "./../../Config/Queries";
+import { ConfirmationModal } from "./../../Component/confirmationModal";
 
 class DashboardContainer extends React.Component {
   constructor(props) {
@@ -63,18 +63,20 @@ class DashboardContainer extends React.Component {
         createdTimeStamp: selected_note?.createdTimeStamp
       },
       mutation: deleteNote,
-      refetchQueries: [{
-        query: getNotebyUser_id,
-        variables: { user_id: user.sub },
-        fetchPolicy: "network-only",
-      }]
+      refetchQueries: [
+        {
+          query: getNotebyUser_id,
+          variables: { user_id: user.sub },
+          fetchPolicy: "network-only"
+        }
+      ]
     })
       .then(Response => {
         this.setState({
           title: "",
           content: "",
           deleteModal: false
-        })
+        });
       })
       .catch(err => console.log(err));
   };
@@ -85,29 +87,38 @@ class DashboardContainer extends React.Component {
   };
   render() {
     let { toogle, rightpaneltoogle, title, content, deleteModal } = this.state;
-    const { user } = this.props
+    const { user } = this.props;
     return (
       <div className="MainContainer">
         <ConfirmationModal
           deleteNote={this.deleteNote}
           deleteModal={deleteModal}
-          handleClose={() => this.setState({ deleteModal: false })} />
+          handleClose={() => this.setState({ deleteModal: false })}
+        />
         <Row className="NavRow">
           <Navbar history={this.props.history} />
         </Row>
         <Row className="MainRow">
-          <Col className={`leftPanelCol ${toogle ? 'collapsepanel' : "collapsepanel-off"} `} xl={2} md={2}>
-
+          <Col
+            className={`leftPanelCol ${
+              toogle ? "collapsepanel" : "collapsepanel-off"
+            } `}
+            xl={3}
+            md={3}
+          >
             <LeftPanel
               user={user}
               setvalueonChange={this.setvalueonChange}
               title={title}
               content={content}
               toogle={toogle}
-              onClose={() => this.setState({ toogle: false, title: "", content: "" })} />
+              onClose={() =>
+                this.setState({ toogle: false, title: "", content: "" })
+              }
+            />
           </Col>
 
-          <Col className="CenterPanelCol" xl={7} md={7} sm={12}>
+          <Col className="CenterPanelCol" xl={6} md={6} sm={12}>
             <Image
               src={require("./../../assets/icons/menu.png")}
               onClick={() =>
@@ -120,7 +131,9 @@ class DashboardContainer extends React.Component {
               title={title}
               content={content}
               fieldEmpty={this.fieldEmpty}
-              deleteModalConfirmation={() => this.setState({ deleteModal: true })}
+              deleteModalConfirmation={() =>
+                this.setState({ deleteModal: true })
+              }
             />
             <Image
               className="rightpanelMenu"
@@ -145,8 +158,6 @@ class DashboardContainer extends React.Component {
               selected_note={this.props.selected_note}
             />
           </Col>
-
-          {/* <Dashboard logout={this.logout} loader={loader} /> */}
         </Row>
       </div>
     );
