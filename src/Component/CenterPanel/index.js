@@ -24,7 +24,7 @@ export const CenterPanelComponent = ({ selected_note, title, content, setvalueon
       </Row >
       <Row className="content-body">
         <Col xl={12} md={12} sm={12} className="content-Row">
-          <textarea disabled={selected_note?.id ? false : true} id="content" value={content} onChange={setvalueonChange} onMouseUp={getSelectedText} />
+          <textarea disabled={selected_note?.id ? false : true} id="content" value={content} onChange={setvalueonChange}  />
         </Col>
       </Row>
 

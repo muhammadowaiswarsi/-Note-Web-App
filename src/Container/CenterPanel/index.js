@@ -51,7 +51,6 @@ class CenterPanel extends React.Component {
         setvalueonChange={setvalueonChange}
         updateNote={this.updateNote}
         deleteModalConfirmation={deleteModalConfirmation}
-        getSelectedText={getSelectedText}
       />
     )
   }

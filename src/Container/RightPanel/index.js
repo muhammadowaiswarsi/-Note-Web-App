@@ -13,9 +13,11 @@ class RightPanel extends React.Component {
   sendRequest = () => {
     const { endPoint } = this.state;
     const { content } = this.props;
+    let selectedText = window.getSelection().toString();
+    let noteContent = selectedText ? selectedText : content
     const options = {
       method: "POST",
-      body: JSON.stringify({ data: content }),
+      body: JSON.stringify({ data: noteContent }),
       headers: {
         "Content-Type": "application/json"
       }

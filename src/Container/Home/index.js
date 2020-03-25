@@ -2,7 +2,7 @@ import React from "react";
 import { Col, Row, Image } from "react-bootstrap";
 import "./index.css";
 import { connect } from "react-redux";
-import RouteAction from "../../store/actions/RouteAction";
+import RouteAction from "../../store/actions/routeAction";
 import { logout } from "../../Service/AuthService";
 import LeftPanel from "./../LeftPanel";
 import CenterPanel from "./../CenterPanel";
@@ -25,7 +25,6 @@ class DashboardContainer extends React.Component {
       title: "",
       content: "",
       deleteModal: false,
-      selectedText: ""
     };
   }
   componentDidUpdate = (prevProps, prevState) => {
@@ -87,15 +86,8 @@ class DashboardContainer extends React.Component {
     });
   };
 
-  getSelectedText = () => {
-    let text = window.getSelection().toString()
-    this.setState({
-      selectedText: text
-    })
-  }
   render() {
-    let { toogle, rightpaneltoogle, title, content, deleteModal, selectedText } = this.state;
-    console.log('selectedText', selectedText)
+    let { toogle, rightpaneltoogle, title, content, deleteModal } = this.state;
     const { user } = this.props;
     return (
       <div className="MainContainer">
@@ -143,7 +135,6 @@ class DashboardContainer extends React.Component {
               deleteModalConfirmation={() =>
                 this.setState({ deleteModal: true })
               }
-              getSelectedText={this.getSelectedText}
             />
             <Image
               className="rightpanelMenu"
@@ -164,7 +155,7 @@ class DashboardContainer extends React.Component {
               rightpaneltoogle={rightpaneltoogle}
               onClose={() => this.setState({ rightpaneltoogle: false })}
               title={title}
-              content={selectedText ? selectedText : content}
+              content={content}
               selected_note={this.props.selected_note}
             />
           </Col>
